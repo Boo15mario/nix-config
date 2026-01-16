@@ -153,7 +153,14 @@ programs.virt-manager.enable = true;
 
   # User accounts live in users.nix.
   # Allow unfree packages
-  nixpkgs.config.allowUnfree = true;
+  nixpkgs.config = {
+    allowUnfree = true;
+    packageOverrides = pkgs: {
+      nur = import (builtins.fetchTarball "https://github.com/nix-community/NUR/archive/master.tar.gz") {
+        inherit pkgs;
+      };
+    };
+  };
 
   # System packages live in packages.nix.
 
