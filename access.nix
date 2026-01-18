@@ -16,8 +16,27 @@ let
     # TODO: Replace with correct hash after first build failure
     cargoHash = "sha256-Yri+MWl28/N36MPweGQBOBZSmyC3L89anXe5kwITIxY=";
 
-    nativeBuildInputs = [ pkgs.pkg-config ];
+    nativeBuildInputs = [ pkgs.pkg-config pkgs.copyDesktopItems ];
     buildInputs = [ pkgs.gtk4 ];
+
+    postInstall = ''
+      mkdir -p $out/share/icons/hicolor/512x512/apps
+      if [ -f assets/icon.png ]; then
+        install -Dm644 assets/icon.png $out/share/icons/hicolor/512x512/apps/${pname}.png
+      elif [ -f icon.png ]; then
+        install -Dm644 icon.png $out/share/icons/hicolor/512x512/apps/${pname}.png
+      fi
+    '';
+
+    desktopItems = [
+      (pkgs.makeDesktopItem {
+        name = "access-launcher";
+        desktopName = "Access Launcher";
+        exec = "access-launcher";
+        icon = "access-launcher";
+        categories = [ "Utility" ];
+      })
+    ];
   };
 
   universal-startup-manager = pkgs.rustPlatform.buildRustPackage rec {
@@ -35,8 +54,27 @@ let
     # TODO: Replace with correct hash after first build failure
     cargoHash = "sha256-Dr27mzPiSmkeTnmHTDgDnkmThq+AkZ6KFHoFf2645uk=";
 
-    nativeBuildInputs = [ pkgs.pkg-config ];
+    nativeBuildInputs = [ pkgs.pkg-config pkgs.copyDesktopItems ];
     buildInputs = [ pkgs.gtk4 ];
+
+    postInstall = ''
+      mkdir -p $out/share/icons/hicolor/512x512/apps
+      if [ -f assets/icon.png ]; then
+        install -Dm644 assets/icon.png $out/share/icons/hicolor/512x512/apps/${pname}.png
+      elif [ -f icon.png ]; then
+        install -Dm644 icon.png $out/share/icons/hicolor/512x512/apps/${pname}.png
+      fi
+    '';
+
+    desktopItems = [
+      (pkgs.makeDesktopItem {
+        name = "universal-startup-manager";
+        desktopName = "Universal Startup Manager";
+        exec = "universal-startup-manager";
+        icon = "universal-startup-manager";
+        categories = [ "Utility" ];
+      })
+    ];
   };
 in
 {
