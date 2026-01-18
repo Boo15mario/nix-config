@@ -22,7 +22,7 @@ orca
       quickemu
     ntfs3g
     libcanberra-gtk3
-    core		fonts
+    corefonts
     vista-fonts
     kdePackages."breeze-gtk"
     kdePackages.breeze-icons
