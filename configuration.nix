@@ -13,6 +13,7 @@
       ./packages.nix
       ./video.nix
        ./system76.nix
+       ./access.nix
     ];
 
   # Bootloader.

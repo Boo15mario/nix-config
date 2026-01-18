@@ -12,15 +12,10 @@
       thunderbird
       google-chrome
       discord
-      orca
-      speechd
-      rhvoice
       lxterminal
       gedit
       mate.caja
       steam
-      playerctl
-      quickemu
       libreoffice
     ];
   };

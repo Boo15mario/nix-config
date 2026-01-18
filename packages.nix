@@ -14,10 +14,15 @@
     gnomeExtensions."notification-timeout"
     gnomeExtensions."overview-background"
     codex
-    gemini-cli
+gemini-cli
+orca
+      speechd
+      rhvoice
+    playerctl
+      quickemu
     ntfs3g
     libcanberra-gtk3
-    corefonts
+    core		fonts
     vista-fonts
     kdePackages."breeze-gtk"
     kdePackages.breeze-icons
