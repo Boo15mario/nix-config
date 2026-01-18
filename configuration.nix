@@ -54,12 +54,12 @@ services.flatpak.enable = true;
   services.xserver.enable = true;
 
   # Enable the GNOME Desktop Environment.
-  services.xserver.displayManager.gdm.enable = true;
-  services.xserver.displayManager.gdm.wayland = true;
-  services.xserver.desktopManager.gnome.enable = true;
-#services.xserver.desktopManager.plasma6.enable = true;
-#services.xserver.displayManager.autoLogin.enable = true;
-services.xserver.displayManager.defaultSession = "gnome";
+  services.displayManager.gdm.enable = true;
+  services.displayManager.gdm.wayland = true;
+  services.desktopManager.gnome.enable = true;
+#services.desktopManager.plasma6.enable = true;
+#services.displayManager.autoLogin.enable = true;
+services.displayManager.defaultSession = "gnome";
 services.gnome.at-spi2-core.enable = true;
 qt = {
   enable = true;
@@ -98,9 +98,9 @@ programs.appimage = {
 };
 #services.xserver.displayManager.autoLogin.user = "alek";
   # Configure keymap in X11
-  services.xserver = {
+  services.xserver.xkb = {
     layout = "us";
-    xkbVariant = "";
+    variant = "";
   };
 
   # Configure console keymap
@@ -110,7 +110,7 @@ programs.appimage = {
   services.printing.enable = true;
 
   # Enable sound with pipewire.
-  hardware.pulseaudio.enable = false;
+  services.pulseaudio.enable = false;
   security.rtkit.enable = true;
   services.pipewire = {
     enable = true;
@@ -150,7 +150,7 @@ programs.virt-manager.enable = true;
 #    };
 #  };
   # Enable touchpad support (enabled default in most desktopManager).
-   services.xserver.libinput.enable = true;
+   services.libinput.enable = true;
 
   # User accounts live in users.nix.
   # Allow unfree packages
@@ -166,7 +166,12 @@ programs.virt-manager.enable = true;
   # Add Nix garbage collection settings
   nix.settings = {
     auto-optimise-store = true;
-    gc-keep-generations = 2;
+  };
+
+  nix.gc = {
+    automatic = true;
+    dates = "weekly";
+    options = "--delete-older-than 7d";
   };
 
   # System packages live in packages.nix.
