@@ -10,7 +10,6 @@
     packages = with pkgs; [
       firefox
       thunderbird
-      google-chrome
       discord
       lxterminal
       gedit
