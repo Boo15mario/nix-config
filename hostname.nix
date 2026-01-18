@@ -1,5 +1,5 @@
 { config, pkgs, ... }:
 
 {
-  networking.hostName = "boo76"; # Define your hostname.
+  networking.hostName = "boo-nix"; # Define your hostname.
 }
