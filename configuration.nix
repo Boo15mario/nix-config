@@ -163,6 +163,12 @@ programs.virt-manager.enable = true;
     };
   };
 
+  # Add Nix garbage collection settings
+  nix.settings = {
+    auto-optimise-store = true;
+    gc-keep-generations = 2;
+  };
+
   # System packages live in packages.nix.
 
 #hardware.nvidia.package = config.boot.kernelPackages.nvidiaPackages.stable;
