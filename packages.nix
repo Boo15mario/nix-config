@@ -31,5 +31,6 @@ orca
     sox
     fastfetch
     htop
+    speedtest-cli
   ];
 }
