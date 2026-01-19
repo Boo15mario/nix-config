@@ -83,5 +83,5 @@ in
     universal-startup-manager
   ];
 
-  services.speechd.enable = true;
+
 }
