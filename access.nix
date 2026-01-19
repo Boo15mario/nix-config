@@ -82,4 +82,6 @@ in
     access-launcher
     universal-startup-manager
   ];
+
+  services.speechd.enable = true;
 }

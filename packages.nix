@@ -28,5 +28,8 @@ orca
     kdePackages.breeze-icons
     kdePackages.breeze
     kdePackages.ocean-sound-theme
+    sox
+    fastfetch
+    htop
   ];
 }
