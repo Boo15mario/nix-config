@@ -69,7 +69,7 @@ environment.gnome.excludePackages = with pkgs; [
   gnome-clocks
   gnome-maps
   gnome-software
-  gnome-web
+  epiphany
   gnome-calendar
   gnome-contacts
   geary
