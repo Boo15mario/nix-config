@@ -2,9 +2,15 @@
 
 {
   nixpkgs.overlays = [
-    (final: prev: import (builtins.fetchTarball "https://github.com/boo15mario/access-nix/archive/main.tar.gz") {
-      pkgs = final;
-    })
+    (final: prev:
+      let
+        accessPkgs = import (builtins.fetchTarball "https://github.com/boo15mario/access-nix/archive/main.tar.gz") {
+          pkgs = prev;
+        };
+      in
+      {
+        inherit (accessPkgs) access-launcher universal-startup-manager;
+      })
   ];
 
   environment.systemPackages = [
