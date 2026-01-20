@@ -69,6 +69,10 @@ environment.gnome.excludePackages = with pkgs; [
   gnome-clocks
   gnome-maps
   gnome-software
+  gnome-web
+  gnome-calendar
+  gnome-contacts
+  geary
 ];
 qt = {
   enable = true;
