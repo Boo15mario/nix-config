@@ -63,6 +63,13 @@ services.flatpak.enable = true;
 #services.displayManager.autoLogin.enable = true;
 services.displayManager.defaultSession = "gnome";
 services.gnome.at-spi2-core.enable = true;
+environment.gnome.excludePackages = with pkgs; [
+  gnome-tour
+  gnome-weather
+  gnome-clocks
+  gnome-maps
+  gnome-software
+];
 qt = {
   enable = true;
   platformTheme = "gnome";
