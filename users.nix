@@ -14,7 +14,6 @@
       lxterminal
       gedit
       mate.caja
-      steam
       libreoffice
     ];
   };

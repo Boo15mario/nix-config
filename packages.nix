@@ -32,5 +32,9 @@ orca
     fastfetch
     htop
     speedtest-cli
+    wineWowPackages.stable
+    winetricks
+    lutris
+    bottles
   ];
 }
