@@ -9,14 +9,15 @@
         };
       in
       {
-        inherit (accessPkgs) access-launcher universal-startup-manager;
+        inherit (accessPkgs) access-launcher universal-startup-manager waytray gtk-mud;
       })
   ];
 
   environment.systemPackages = [
     pkgs.access-launcher
     pkgs.universal-startup-manager
+    pkgs.waytray
+    pkgs.gtk-mud
   ];
-
 
 }
