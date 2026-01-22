@@ -36,6 +36,7 @@ orca
     winetricks
     lutris
     bottles
+    gdm-settings
   ];
 
 
