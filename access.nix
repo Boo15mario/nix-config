@@ -21,7 +21,7 @@
     pkgs.universal-startup-manager
     pkgs.waytray
     pkgs.gtkmud
-    pkgs.emacs-pgtk
+    pkgs.emacs-git-pgtk
   ];
 
   services.emacs.enable = true;
