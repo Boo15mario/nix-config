@@ -41,6 +41,22 @@ boot.kernelPackages = pkgs.linuxPackages_latest;
   networking.nameservers = [ "1.1.1.1" "8.8.8.8" ];
 services.flatpak.enable = true;
 
+  systemd.services.flatpak-flathub = {
+    wantedBy = [ "multi-user.target" ];
+    path = [ pkgs.flatpak ];
+    script = ''
+      flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
+    '';
+  };
+
+  systemd.services.flatpak-flathub-beta = {
+    wantedBy = [ "multi-user.target" ];
+    path = [ pkgs.flatpak ];
+    script = ''
+      flatpak remote-add --if-not-exists flathub-beta https://flathub.org/beta-repo/flathub-beta.flatpakrepo
+    '';
+  };
+
   # Set your time zone.
   time.timeZone = "America/Chicago";
 
