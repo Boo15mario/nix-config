@@ -40,6 +40,8 @@ orca
 
   systemd.services.flatpak-gdm-settings = {
     wantedBy = [ "multi-user.target" ];
+    after = [ "network-online.target" "flatpak-flathub.service" ];
+    wants = [ "network-online.target" "flatpak-flathub.service" ];
     path = [ pkgs.flatpak ];
     script = ''
       flatpak install -y flathub io.github.realmazharhussain.GdmSettings
