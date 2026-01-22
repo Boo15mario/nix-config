@@ -37,4 +37,12 @@ orca
     lutris
     bottles
   ];
+
+  systemd.services.flatpak-gdm-settings = {
+    wantedBy = [ "multi-user.target" ];
+    path = [ pkgs.flatpak ];
+    script = ''
+      flatpak install -y flathub io.github.realmazharhussain.GdmSettings
+    '';
+  };
 }
