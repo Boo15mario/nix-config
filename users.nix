@@ -16,7 +16,7 @@
       mate.caja
       libreoffice
       obs-studio
-      minecraft
+      prismlauncher
       brave
     ];
   };
