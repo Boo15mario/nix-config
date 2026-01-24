@@ -15,6 +15,9 @@
       gedit
       mate.caja
       libreoffice
+      obs-studio
+      minecraft
+      brave
     ];
   };
 
