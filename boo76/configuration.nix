@@ -15,6 +15,7 @@
       ./audio.nix
        ./system76.nix
        ./access.nix
+       ./samba.nix
     ];
 
   # Bootloader.

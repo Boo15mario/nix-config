@@ -13,11 +13,8 @@
     gnomeExtensions."no-overview"
     gnomeExtensions."notification-timeout"
     gnomeExtensions."overview-background"
-    codex
-gemini-cli
-orca
+    orca
       speechd
-      rhvoice
     playerctl
       quickemu
     ntfs3g
@@ -37,6 +34,13 @@ orca
     lutris
     bottles
     gdm-settings
+    # Printing and Samba
+    hplip
+    system-config-printer
+    gutenprint
+    cups-filters
+    samba
+    cifs-utils
   ];
 
 
