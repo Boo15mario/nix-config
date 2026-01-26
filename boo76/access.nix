@@ -19,9 +19,12 @@
     pkgs.waytray
     pkgs.gtkmud
     pkgs.emacs-pgtk
+    pkgs.espeakup
   ];
 
   services.emacs.enable = true;
   services.emacs.package = pkgs.emacs-pgtk;
+
+  services.espeakup.enable = true;
 
 }
