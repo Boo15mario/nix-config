@@ -13,7 +13,7 @@
       ./packages.nix
       ./video.nix
       ./audio.nix
-       ./system76.nix
+       #./system76.nix
        ./access.nix
        ./samba.nix
     ];
@@ -205,6 +205,7 @@ programs.virt-manager.enable = true;
 
   # Enable the OpenSSH daemon.
    services.openssh.enable = true;
+   services.tailscale.enable = true;
 services.locate.enable = true;
   # Open ports in the firewall.
   # networking.firewall.allowedTCPPorts = [ ... ];

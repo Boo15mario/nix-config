@@ -4,6 +4,6 @@
 echo "Installing CLI tools via npm..."
 
 # Install packages globally with their respective scopes
-sudo npm install -g @openai/codex @google/gemini-cli @google/jules
+sudo npm install -g @openai/codex @google/gemini-cli @google/jules opencode-ai@latest
 
 echo "Installation complete."

@@ -41,6 +41,7 @@
     cups-filters
     samba
     cifs-utils
+    tailscale
   ];
 
 
