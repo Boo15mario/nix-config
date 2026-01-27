@@ -109,6 +109,7 @@ programs.dconf = {
             "no-overview@fthx"
             "notification-timeout@chlumskyvaclav.gmail.com"
             "overviewbackground@github.com.orbitcorrection"
+            "BingWallpaper@ineffable-gmail.com"
           ];
         };
       };

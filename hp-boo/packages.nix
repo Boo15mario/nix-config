@@ -13,6 +13,7 @@
     gnomeExtensions."no-overview"
     gnomeExtensions."notification-timeout"
     gnomeExtensions."overview-background"
+    gnomeExtensions.bing-wallpaper-changer
     orca
       speechd
     playerctl
