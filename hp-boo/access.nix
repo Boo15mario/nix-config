@@ -25,6 +25,4 @@
   services.emacs.enable = true;
   services.emacs.package = pkgs.emacs-pgtk;
 
-  services.espeakup.enable = true;
-
 }
