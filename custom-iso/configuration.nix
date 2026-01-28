@@ -26,6 +26,14 @@
       screen-reader-enabled=true
     '';
   };
+
+  xdg.mime.defaultApplications = {
+    "text/html" = "firefox.desktop";
+    "x-scheme-handler/http" = "firefox.desktop";
+    "x-scheme-handler/https" = "firefox.desktop";
+    "x-scheme-handler/about" = "firefox.desktop";
+    "x-scheme-handler/unknown" = "firefox.desktop";
+  };
   
   # Ensure the installer is available (should be by default in installation-cd-graphical-gnome, but explicit doesn't hurt if custom)
   # The module imported above provides 'calamares' or 'nixos-install' tools typically.

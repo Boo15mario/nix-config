@@ -8,6 +8,15 @@ in
     wget
     curl
     python3
+    ruby
+    go
+    ghc
+    cabal-install
+    jdk8
+    jdk11
+    jdk17
+    jdk21
+    jdk23
     gnumake
     gcc
     rustc

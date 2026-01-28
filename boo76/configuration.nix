@@ -168,6 +168,14 @@ programs.virt-manager.enable = true;
   # Enable touchpad support (enabled default in most desktopManager).
    services.libinput.enable = true;
 
+  xdg.mime.defaultApplications = {
+    "text/html" = "firefox.desktop";
+    "x-scheme-handler/http" = "firefox.desktop";
+    "x-scheme-handler/https" = "firefox.desktop";
+    "x-scheme-handler/about" = "firefox.desktop";
+    "x-scheme-handler/unknown" = "firefox.desktop";
+  };
+
   # User accounts live in users.nix.
   # Allow unfree packages
   nixpkgs.config = {

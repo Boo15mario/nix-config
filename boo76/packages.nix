@@ -9,6 +9,15 @@ in
     nano # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
     wget
     python3
+    ruby
+    go
+    ghc
+    cabal-install
+    jdk8
+    jdk11
+    jdk17
+    jdk21
+    jdk23
     gnumake
     gcc
     rustc
