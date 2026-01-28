@@ -1,12 +1,18 @@
 { config, pkgs, ... }:
-
+let
+  unstable = import (builtins.fetchTarball "https://github.com/nixos/nixpkgs/archive/nixos-unstable.tar.gz") { config = config.nixpkgs.config; };
+in
 {
-  # List packages installed in system profile.
   environment.systemPackages = with pkgs; [
     nano
     wget
     curl
-    nodejs
+    python3
+    gnumake
+    gcc
+    rustc
+    cargo
+    unstable.nodejs
     gh
     git
     fastfetch

@@ -1,12 +1,19 @@
 { config, pkgs, ... }:
-
+let
+  unstable = import (builtins.fetchTarball "https://github.com/nixos/nixpkgs/archive/nixos-unstable.tar.gz") { config = config.nixpkgs.config; };
+in
 {
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
     nano # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
     wget
-    nodejs
+    python3
+    gnumake
+    gcc
+    rustc
+    cargo
+    unstable.nodejs
     gh
     git
     gnome-extension-manager
