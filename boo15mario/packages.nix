@@ -16,7 +16,6 @@ in
     jdk11
     jdk17
     jdk21
-    jdk23
     gnumake
     gcc
     rustc

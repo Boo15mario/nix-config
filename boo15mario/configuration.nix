@@ -76,6 +76,8 @@
     options = "--delete-older-than 7d";
   };
 
+  programs.nix-ld.enable = true;
+
   # Enable the OpenSSH daemon.
    services.openssh.enable = true;
    services.tailscale.enable = true;

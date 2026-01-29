@@ -17,11 +17,11 @@ in
     jdk11
     jdk17
     jdk21
-    jdk23
     gnumake
     gcc
     rustc
     cargo
+    pkg-config
     unstable.nodejs
     gh
     git
@@ -29,7 +29,6 @@ in
     gnomeExtensions."no-overview"
     gnomeExtensions."notification-timeout"
     gnomeExtensions."overview-background"
-    gnomeExtensions.bing-wallpaper-changer
     orca
       speechd
     playerctl
