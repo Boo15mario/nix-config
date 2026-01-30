@@ -73,6 +73,7 @@ services.flatpak.enable = true;
 #services.displayManager.autoLogin.enable = true;
 services.displayManager.defaultSession = "gnome";
 services.gnome.at-spi2-core.enable = true;
+services.gnome.gnome-keyring.enable = true;
 environment.gnome.excludePackages = with pkgs; [
   gnome-tour
   gnome-weather
