@@ -34,6 +34,7 @@ in
     playerctl
       quickemu
     ntfs3g
+    libsecret
     libcanberra-gtk3
     corefonts
     vista-fonts

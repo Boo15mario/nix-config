@@ -23,6 +23,7 @@ in
     unstable.nodejs
     gh
     git
+    libsecret
     fastfetch
     htop
     speedtest-cli
