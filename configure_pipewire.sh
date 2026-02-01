@@ -162,6 +162,17 @@ EOF
     echo 'monitor.alsa.rules = [
   {
     matches = [
+      { device.name = "~alsa_card.*" }
+    ]
+    actions = {
+      update-props = {
+        session.suspend-timeout-seconds = 0
+        api.alsa.disable-power-save = true
+      }
+    }
+  }
+  {
+    matches = [
       { node.name = "~alsa_input.*" }
       { node.name = "~alsa_output.*" }
     ]

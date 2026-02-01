@@ -59,6 +59,11 @@ in
     samba
     cifs-utils
     tailscale
+    plasma-workspace-wallpapers
+    elementary-wallpapers
+    mate-backgrounds
+    deepin-wallpapers
+    ubuntu-wallpapers
   ];
 
 
