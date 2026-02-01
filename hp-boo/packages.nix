@@ -62,6 +62,17 @@ in
     kdePackages.plasma-workspace-wallpapers
     pantheon.elementary-wallpapers
     mate.mate-backgrounds
+    pop-hp-wallpapers
+    fedora-backgrounds.f32
+    fedora-backgrounds.f33
+    fedora-backgrounds.f34
+    fedora-backgrounds.f35
+    fedora-backgrounds.f36
+    fedora-backgrounds.f37
+    fedora-backgrounds.f38
+    nixos-artwork.wallpapers.nineish
+    nixos-artwork.wallpapers.catppuccin-mocha
+    nixos-artwork.wallpapers.simple-dark-gray
   ];
 
 
