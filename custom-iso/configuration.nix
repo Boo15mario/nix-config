@@ -9,6 +9,7 @@
   # Packages to include in the ISO
   environment.systemPackages = with pkgs; [
     git
+    aria2
     gedit
     mate.caja
     orca

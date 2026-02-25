@@ -7,6 +7,7 @@ in
     nano
     wget
     curl
+    aria2
     python3
     ruby
     go
