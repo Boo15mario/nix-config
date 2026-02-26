@@ -9,7 +9,7 @@
         };
       in
       {
-        inherit (accessPkgs) access-launcher universal-startup-manager waytray gtkmud;
+        inherit (accessPkgs) access-launcher universal-startup-manager waytray gtkmud access-grub;
       })
   ];
 

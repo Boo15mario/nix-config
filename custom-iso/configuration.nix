@@ -4,7 +4,27 @@
   imports = [
     "${modulesPath}/installer/cd-dvd/installation-cd-graphical-gnome.nix"
     ./access.nix
+    ./audio.nix
   ];
+
+  # Custom ISO boot settings
+  isoImage.isoName = "access-nix-custom.iso";
+  isoImage.volumeId = "ACCESS_NIX";
+  isoImage.grubConfig = ''
+    set menu_color_normal=white/black
+    set menu_color_highlight=white/red
+  '';
+  isoImage.syslinuxTheme = ''
+    MENU TITLE Access-Nix Custom Installer
+    MENU RESOLUTION 800 600
+    MENU COLOR BORDER   30;44 #00000000 #00000000 none
+    MENU COLOR SCREEN   37;40 #FF000000 #FF000000 none
+    MENU COLOR TITLE    1;36;44 #FFFFFFFF #00000000 none
+    MENU COLOR SEL      7;37;40 #FFFFFFFF #FFFF0000 all
+    MENU COLOR UNSEL    37;44 #FFFFFFFF #00000000 none
+    MENU COLOR HELP     37;40 #FFFFFFFF #00000000 none
+    MENU COLOR TIMEOUT  1;37;40 #FFFFFFFF #00000000 none
+  '';
 
   # Packages to include in the ISO
   environment.systemPackages = with pkgs; [
