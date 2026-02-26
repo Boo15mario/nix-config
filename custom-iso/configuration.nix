@@ -8,14 +8,20 @@
   ];
 
   # Custom ISO boot settings
-  isoImage.isoName = "access-nix-custom.iso";
-  isoImage.volumeId = "ACCESS_NIX";
+  isoImage.isoName = "access-os-1.0.iso";
+  isoImage.volumeId = "ACCESS_OS";
+  
+  # Official Branding
+  system.nixos.distroId = "access-os";
+  system.nixos.distroName = "access-OS";
+  system.nixos.distroVersion = "1.0-alpha";
+
   isoImage.grubConfig = ''
     set menu_color_normal=white/black
     set menu_color_highlight=white/red
   '';
   isoImage.syslinuxTheme = ''
-    MENU TITLE Access-Nix Custom Installer
+    MENU TITLE access-OS Custom Installer
     MENU RESOLUTION 800 600
     MENU COLOR BORDER   30;44 #00000000 #00000000 none
     MENU COLOR SCREEN   37;40 #FF000000 #FF000000 none
