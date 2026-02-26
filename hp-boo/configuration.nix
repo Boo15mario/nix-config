@@ -196,8 +196,9 @@ programs.virt-manager.enable = true;
 
   nix.gc = {
     automatic = true;
-    dates = "weekly";
-    options = "--delete-older-than 7d";
+    persistent = true;
+    dates = "daily";
+    options = "--delete-older-than 3d";
   };
 
   # System packages live in packages.nix.

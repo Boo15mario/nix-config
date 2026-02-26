@@ -9,6 +9,7 @@
   # Packages to include in the ISO
   environment.systemPackages = with pkgs; [
     git
+    jq
     aria2
     gedit
     mate.caja
