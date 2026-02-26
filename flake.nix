@@ -7,9 +7,10 @@
       url = "github:boo15mario/access-nix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    nur.url = "github:nix-community/NUR";
   };
 
-  outputs = { self, nixpkgs, access-nix, ... }@inputs:
+  outputs = { self, nixpkgs, access-nix, nur, ... }@inputs:
     let
       system = "x86_64-linux";
       pkgs = import nixpkgs {
@@ -25,7 +26,10 @@
           path
           {
             networking.hostName = hostName;
-            nixpkgs.overlays = [ access-nix.overlays.default ];
+            nixpkgs.overlays = [ 
+              access-nix.overlays.default
+              nur.overlays.default
+            ];
           }
         ];
       };
@@ -44,7 +48,10 @@
           modules = [
             ./custom-iso/configuration.nix
             {
-              nixpkgs.overlays = [ access-nix.overlays.default ];
+              nixpkgs.overlays = [ 
+                access-nix.overlays.default
+                nur.overlays.default
+              ];
             }
           ];
         };

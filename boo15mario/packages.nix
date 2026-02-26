@@ -1,7 +1,4 @@
 { config, pkgs, ... }:
-let
-  unstable = import (builtins.fetchTarball "https://github.com/nixos/nixpkgs/archive/nixos-unstable.tar.gz") { config = config.nixpkgs.config; };
-in
 {
   environment.systemPackages = with pkgs; [
     nano
@@ -22,7 +19,7 @@ in
     gcc
     rustc
     cargo
-    unstable.nodejs
+    nodejs
     gh
     git
     libsecret
