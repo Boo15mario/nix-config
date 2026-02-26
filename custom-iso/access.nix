@@ -10,6 +10,7 @@
     pkgs.gtkmud
     pkgs.emacs-pgtk
     pkgs.access-os-artwork
+    pkgs.access-os-installer
   ];
 
   services.emacs.enable = true;
