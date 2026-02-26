@@ -9,7 +9,7 @@
         };
       in
       {
-        inherit (accessPkgs) access-launcher universal-startup-manager waytray gtkmud access-grub access-os-artwork;
+        inherit (accessPkgs) access-launcher universal-startup-manager waytray gtkmud access-grub access-os-artwork access-os-plymouth-theme;
       })
   ];
 

@@ -31,7 +31,8 @@
   };
   boot.plymouth = {
     enable = true;
-    theme = "bgrt";
+    theme = "access-os-boot";
+    themePackages = [ pkgs.access-os-plymouth-theme ];
   };
   boot.consoleLogLevel = 0;
   boot.initrd.verbose = false;

@@ -16,6 +16,15 @@
   system.nixos.distroName = "access-OS";
   system.nixos.distroVersion = "1.0-alpha";
 
+  boot.plymouth = {
+    enable = true;
+    theme = "access-os-boot";
+    themePackages = [ pkgs.access-os-plymouth-theme ];
+  };
+  boot.kernelParams = [ "quiet" "splash" ];
+  boot.consoleLogLevel = 0;
+  boot.initrd.verbose = false;
+
   isoImage.grubConfig = ''
     set menu_color_normal=white/black
     set menu_color_highlight=white/red
