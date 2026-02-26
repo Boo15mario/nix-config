@@ -1,17 +1,12 @@
 #!/usr/bin/env bash
 
-# Build the custom ISO using the configuration in the custom-iso directory
-echo "Building the access-nix ISO..."
+# Build the custom ISO using the configuration in the root flake
+echo "Building the access-OS ISO..."
 
-# We use -o to name the symlink, though the internal volume ID is harder to change without 
-# modifying the nixos configuration. We'll set the symlink to 'access-nix-iso'.
-nix-build '<nixpkgs/nixos>' \
-  -A config.system.build.isoImage \
-  -I nixos-config=$(pwd)/custom-iso/configuration.nix \
-  -o access-nix
+nix --extra-experimental-features 'nix-command flakes' build .#iso -o access-os-iso
 
 if [ $? -eq 0 ]; then
-  echo "Build complete. The ISO can be found in the 'access-nix' result directory."
+  echo "Build complete. The ISO can be found as 'access-os-iso'."
 else
   echo "Build failed."
   exit 1
