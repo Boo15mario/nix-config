@@ -9,7 +9,7 @@
         };
       in
       {
-        inherit (accessPkgs) access-launcher universal-startup-manager waytray gtkmud;
+        inherit (accessPkgs) access-launcher universal-startup-manager waytray gtkmud access-grub access-os-artwork;
       })
   ];
 
@@ -20,6 +20,7 @@
     pkgs.gtkmud
     pkgs.emacs-pgtk
     pkgs.espeakup
+    pkgs.access-os-artwork
   ];
 
   services.emacs.enable = true;
