@@ -5,8 +5,8 @@
     (final: prev:
       let
         accessPkgs = import (builtins.fetchTarball {
-          url = "https://github.com/boo15mario/access-nix/archive/5794f74202dbf277cef4dde3d59f2a57b10e06f9.tar.gz";
-          sha256 = "0nj801maiijxqn35pqmnaffr8iqc39ick6z6440hipdb1bxci7pg";
+          url = "https://github.com/boo15mario/access-nix/archive/ef9d1ac4c5dee432d1ac00f4071877b0bbb3a9d3.tar.gz";
+          sha256 = "0wndhngh6mbhv7i0m4nxihcdnrjyfa4257wqxflnfbdi44qbsmj9";
         }) {
           pkgs = prev;
         };
