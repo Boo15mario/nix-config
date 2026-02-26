@@ -16,6 +16,7 @@
        ./system76.nix
        ./access.nix
        ./samba.nix
+       ./ollama.nix
     ];
 
   # Bootloader.
