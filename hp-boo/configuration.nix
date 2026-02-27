@@ -29,6 +29,7 @@
     useOSProber = true;
     theme = "${pkgs.access-grub}";
   };
+  boot.loader.timeout = 2;
   boot.plymouth = {
     enable = true;
     theme = "access-os-boot";
