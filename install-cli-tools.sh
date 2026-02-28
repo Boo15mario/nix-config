@@ -9,7 +9,7 @@ mkdir -p "$NPM_GLOBAL"
 npm config set prefix "$NPM_GLOBAL"
 
 # Install packages globally (without sudo)
-npm install -g @openai/codex @google/gemini-cli @google/jules opencode-ai@latest @github/copilot
+npm install -g @openai/codex @google/gemini-cli @google/jules @anthropic/claude-code opencode-ai@latest @github/copilot
 
 # Function to add to PATH if not present
 add_to_path() {
