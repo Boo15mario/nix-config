@@ -22,6 +22,8 @@
     cargo
     pkg-config
     nodejs
+    texliveFull
+    tesseract
     gh
     git
     gnome-extension-manager

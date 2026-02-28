@@ -20,6 +20,8 @@
     rustc
     cargo
     nodejs
+    texliveFull
+    tesseract
     gh
     git
     libsecret

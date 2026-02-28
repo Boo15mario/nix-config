@@ -46,6 +46,7 @@
     git
     jq
     aria2
+    tesseract
     gedit
     mate.caja
     orca
