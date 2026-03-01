@@ -13,8 +13,8 @@
       discord
       lxterminal
       gedit
-      mate.caja
-      libreoffice
+      caja
+      libreoffice-fresh
       obs-studio
       prismlauncher
       brave

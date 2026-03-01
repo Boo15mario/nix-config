@@ -48,7 +48,7 @@
     aria2
     tesseract
     gedit
-    mate.caja
+    caja
     orca
     lxterminal
     firefox

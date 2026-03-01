@@ -47,7 +47,7 @@
     fastfetch
     htop
     speedtest-cli
-    wineWowPackages.stable
+    wineWow64Packages.stable
     winetricks
     lutris
     bottles
@@ -62,7 +62,7 @@
     tailscale
     kdePackages.plasma-workspace-wallpapers
     pantheon.elementary-wallpapers
-    mate.mate-backgrounds
+    mate-backgrounds
     pop-hp-wallpapers
     fedora-backgrounds.f32
     fedora-backgrounds.f33
