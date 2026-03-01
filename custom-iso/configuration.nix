@@ -55,6 +55,7 @@
   ];
 
   programs.nix-ld.enable = true;
+  nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
   # Enable accessibility features
   services.gnome.at-spi2-core.enable = true;

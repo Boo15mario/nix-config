@@ -197,6 +197,7 @@ programs.virt-manager.enable = true;
   # Add Nix garbage collection settings
   nix.settings = {
     auto-optimise-store = true;
+    experimental-features = [ "nix-command" "flakes" ];
   };
 
   nix.gc = {

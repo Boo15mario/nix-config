@@ -31,8 +31,7 @@
               nur.overlays.default
             ];
             
-            # This pins the system's nix command and registry to match the flake
-            nix.settings.experimental-features = [ "nix-command" "flakes" ];
+            # This pins the system registry to match the flake
             nix.registry.nixpkgs.flake = nixpkgs;
             nix.nixPath = [ "nixpkgs=${nixpkgs.outPath}" ];
           }
@@ -57,8 +56,7 @@
                 access-nix.overlays.default
                 nur.overlays.default
               ];
-              # This pins the system's nix command and registry to match the flake
-              nix.settings.experimental-features = [ "nix-command" "flakes" ];
+              # This pins the system registry to match the flake
               nix.registry.nixpkgs.flake = nixpkgs;
               nix.nixPath = [ "nixpkgs=${nixpkgs.outPath}" ];
             }
