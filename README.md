@@ -76,7 +76,8 @@ To install NixOS using this repository from a live environment:
 4. **Install using Flakes**:
    ```bash
    # Replace 'hp-boo' with your hostname
-   sudo nixos-install --flake /mnt/etc/nixos#hp-boo --extra-experimental-features 'nix-command flakes'
+   sudo NIX_CONFIG='extra-experimental-features = nix-command flakes' \
+     nixos-install --flake /mnt/etc/nixos#hp-boo
    ```
 
 ## Directory Structure
