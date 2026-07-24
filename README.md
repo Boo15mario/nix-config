@@ -35,6 +35,22 @@ This configuration automatically enables `nix-command` and `flakes` on all syste
 
 ## Fresh Install / Reinstalling
 
+### Interactive installer
+
+Boot a NixOS live environment, clone this repository, and run:
+
+```bash
+sudo ./install-nixos.sh
+```
+
+The script **erases** the selected system disk, creates a GPT EFI partition and
+an XFS root partition, and can optionally erase a second disk for an XFS
+`/home`. It also offers an optional swapfile, generates hardware configuration
+for the installed machine, and installs the selected flake host (default:
+`boo76-main`). `boo76-main` uses the `boo76` hardware profile by default.
+
+### Manual installation
+
 To install NixOS using this repository from a live environment:
 
 1. **Mount your partitions**:

@@ -8,13 +8,12 @@
   ];
 
   # Custom ISO boot settings
-  isoImage.isoName = "access-os-1.0.iso";
-  isoImage.volumeId = "ACCESS_OS";
+  image.fileName = "access-os-1.0.iso";
+  isoImage.volumeID = "ACCESS_OS";
   
   # Official Branding
   system.nixos.distroId = "access-os";
   system.nixos.distroName = "access-OS";
-  system.nixos.distroVersion = "1.0-alpha";
 
   boot.plymouth = {
     enable = true;
@@ -25,10 +24,6 @@
   boot.consoleLogLevel = 0;
   boot.initrd.verbose = false;
 
-  isoImage.grubConfig = ''
-    set menu_color_normal=white/black
-    set menu_color_highlight=white/red
-  '';
   isoImage.syslinuxTheme = ''
     MENU TITLE access-OS Custom Installer
     MENU RESOLUTION 800 600
@@ -43,6 +38,7 @@
 
   # Packages to include in the ISO
   environment.systemPackages = with pkgs; [
+    (writeShellScriptBin "install-nixos" (builtins.readFile ../install-nixos.sh))
     git
     jq
     aria2
@@ -61,7 +57,7 @@
   services.gnome.at-spi2-core.enable = true;
 
   # Configure Orca to autostart
-  services.xserver.desktopManager.gnome = {
+  services.desktopManager.gnome = {
     extraGSettingsOverrides = ''
       [org.gnome.desktop.a11y.applications]
       screen-reader-enabled=true
