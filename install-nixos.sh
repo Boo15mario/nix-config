@@ -18,8 +18,9 @@ require_root() {
 
 require_commands() {
   local command
-  for command in fallocate git grep install lsblk mkswap mount parted partprobe sed \
-    swapon udevadm mkfs.fat mkfs.xfs umount nixos-generate-config nixos-install; do
+  for command in chmod fallocate git grep install lsblk mkdir mkswap mount parted \
+    partprobe sed swapon udevadm mkfs.fat mkfs.xfs umount nixos-enter \
+    nixos-generate-config nixos-install; do
     command -v "$command" >/dev/null || die "Required command is missing: $command"
   done
 }
@@ -74,7 +75,7 @@ main() {
   lsblk -d -o NAME,SIZE,MODEL,TYPE
 
   local system_disk home_disk root_partition efi_partition home_partition
-  local host hardware_profile hardware_profile_input swap_size repository username
+  local host swap_size repository username
 
   read -r -p "System disk to erase (for example /dev/nvme0n1): " system_disk
   validate_disk "$system_disk"
@@ -117,31 +118,26 @@ main() {
   host=${host:-boo76-main}
   [[ $host =~ ^[A-Za-z0-9][A-Za-z0-9-]*$ ]] || die "Invalid host profile name."
 
-  # boo76-main is a small overlay that deliberately reuses boo76 hardware.
-  hardware_profile=$host
-  [[ $host == boo76-main ]] && hardware_profile=boo76
-  read -r -p "Hardware profile to update [$hardware_profile]: " hardware_profile_input
-  hardware_profile=${hardware_profile_input:-$hardware_profile}
-  [[ $hardware_profile =~ ^[A-Za-z0-9][A-Za-z0-9-]*$ ]] || die "Invalid hardware profile name."
-
   read -r -p "Repository URL [$DEFAULT_REPOSITORY]: " repository
   repository=${repository:-$DEFAULT_REPOSITORY}
   git clone "$repository" "$MOUNT_POINT/etc/nixos"
   [[ -f "$MOUNT_POINT/etc/nixos/flake.nix" ]] || die "The repository does not contain flake.nix."
   [[ -f "$MOUNT_POINT/etc/nixos/$host/configuration.nix" ]] || die "Host profile '$host' does not exist in the repository."
-  [[ -f "$MOUNT_POINT/etc/nixos/$hardware_profile/hardware-configuration.nix" ]] || die "Hardware profile '$hardware_profile' has no hardware-configuration.nix."
 
   nixos-generate-config --root "$MOUNT_POINT"
+  mkdir -p "$MOUNT_POINT/etc/nixos/$host"
   install -m 644 "$MOUNT_POINT/etc/nixos/hardware-configuration.nix" \
-    "$MOUNT_POINT/etc/nixos/$hardware_profile/hardware-configuration.nix"
+    "$MOUNT_POINT/etc/nixos/$host/hardware-configuration.nix"
 
-  if [[ -n $swap_size ]] && ! grep -Fq 'device = "/swapfile"' "$MOUNT_POINT/etc/nixos/$hardware_profile/hardware-configuration.nix"; then
+  if [[ -n $swap_size ]] && ! grep -Fq 'device = "/swapfile"' "$MOUNT_POINT/etc/nixos/$host/hardware-configuration.nix"; then
     sed -i 's|swapDevices = \[ \];|swapDevices = [ { device = "/swapfile"; } ];|' \
-      "$MOUNT_POINT/etc/nixos/$hardware_profile/hardware-configuration.nix"
+      "$MOUNT_POINT/etc/nixos/$host/hardware-configuration.nix"
+    grep -Fq 'device = "/swapfile"' "$MOUNT_POINT/etc/nixos/$host/hardware-configuration.nix" ||
+      die "Could not add /swapfile to the generated hardware configuration."
   fi
 
   NIX_CONFIG='extra-experimental-features = nix-command flakes' \
-    nixos-install --flake "$MOUNT_POINT/etc/nixos#$host"
+    nixos-install --flake "path:$MOUNT_POINT/etc/nixos#$host"
 
   read -r -p "Set a password for user [alek] now? [Y/n]: " username
   if [[ ! $username =~ ^[Nn]$ ]]; then

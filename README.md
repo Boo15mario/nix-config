@@ -46,8 +46,8 @@ sudo ./install-nixos.sh
 The script **erases** the selected system disk, creates a GPT EFI partition and
 an XFS root partition, and can optionally erase a second disk for an XFS
 `/home`. It also offers an optional swapfile, generates hardware configuration
-for the installed machine, and installs the selected flake host (default:
-`boo76-main`). `boo76-main` uses the `boo76` hardware profile by default.
+in the selected host's own directory, and installs that flake host (default:
+`boo76-main`).
 
 ### Manual installation
 
@@ -77,7 +77,7 @@ To install NixOS using this repository from a live environment:
    ```bash
    # Replace 'hp-boo' with your hostname
    sudo NIX_CONFIG='extra-experimental-features = nix-command flakes' \
-     nixos-install --flake /mnt/etc/nixos#hp-boo
+     nixos-install --flake path:/mnt/etc/nixos#hp-boo
    ```
 
 ## Directory Structure
