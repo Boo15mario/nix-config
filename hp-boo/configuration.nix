@@ -77,7 +77,6 @@ services.flatpak.enable = true;
 
   # Enable the GNOME Desktop Environment.
   services.displayManager.gdm.enable = true;
-  services.displayManager.gdm.wayland = true;
   services.desktopManager.gnome.enable = true;
 #services.desktopManager.plasma6.enable = true;
 #services.displayManager.autoLogin.enable = true;

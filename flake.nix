@@ -42,6 +42,7 @@
       nixosConfigurations = {
         hp-boo = mkHost "hp-boo" ./hp-boo/configuration.nix;
         boo76 = mkHost "boo76" ./boo76/configuration.nix;
+        "boo76-main" = mkHost "boo76-main" ./boo76-main/configuration.nix;
         boo15mario = mkHost "boo15mario" ./boo15mario/configuration.nix;
         "boo15mario-main" = mkHost "boo15mario-main" ./boo15mario-main/configuration.nix;
         
