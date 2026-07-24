@@ -50,7 +50,6 @@
     wineWow64Packages.stable
     winetricks
     lutris
-    bottles
     gdm-settings
     # Printing and Samba
     hplip

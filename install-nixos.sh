@@ -86,7 +86,7 @@ main() {
   mkfs.fat -F 32 -n EFI "$efi_partition"
   mkfs.xfs -f -L nixos-root "$root_partition"
 
-  mount "$root_partition" "$MOUNT_POINT"
+  mount -t xfs "$root_partition" "$MOUNT_POINT"
   mkdir -p "$MOUNT_POINT/boot" "$MOUNT_POINT/home"
   mount "$efi_partition" "$MOUNT_POINT/boot"
 
@@ -101,7 +101,7 @@ main() {
     create_home_partition "$home_disk"
     home_partition=$(partition_path "$home_disk" 1)
     mkfs.xfs -f -L nixos-home "$home_partition"
-    mount "$home_partition" "$MOUNT_POINT/home"
+    mount -t xfs "$home_partition" "$MOUNT_POINT/home"
   fi
 
   read -r -p "Swapfile size (for example 16G; leave blank for none): " swap_size
@@ -140,8 +140,8 @@ main() {
       "$MOUNT_POINT/etc/nixos/$hardware_profile/hardware-configuration.nix"
   fi
 
-  nixos-install --flake "$MOUNT_POINT/etc/nixos#$host" \
-    --extra-experimental-features 'nix-command flakes'
+  NIX_CONFIG='extra-experimental-features = nix-command flakes' \
+    nixos-install --flake "$MOUNT_POINT/etc/nixos#$host"
 
   read -r -p "Set a password for user [alek] now? [Y/n]: " username
   if [[ ! $username =~ ^[Nn]$ ]]; then
