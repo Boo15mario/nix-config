@@ -32,8 +32,8 @@
   boot.loader.timeout = 2;
   boot.plymouth = {
     enable = true;
-    theme = "access-os-boot";
-    themePackages = [ pkgs.access-os-plymouth-theme ];
+    theme = "nixos-bgrt";
+    themePackages = [ pkgs.nixos-bgrt-plymouth ];
   };
   boot.consoleLogLevel = 0;
   boot.initrd.verbose = false;
