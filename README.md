@@ -22,7 +22,8 @@ nix flake update
 Then run the rebuild command for your system again.
 
 For an interactive menu that can update only the flake inputs, update and
-switch the running system, or update the system for the next boot, run:
+switch the running system, update the system for the next boot, or force a
+bootloader installation during a migration, run:
 
 ```bash
 ./update-system.sh
@@ -35,6 +36,7 @@ needed with, for example:
 NIXOS_HOST=boo76-main ./update-system.sh
 ./update-system.sh --host boo76-main --switch
 ./update-system.sh --host boo76 --boot
+./update-system.sh --host boo76-main --install-bootloader
 ```
 
 Run `./update-system.sh --help` to see every menu-bypass and profile-override

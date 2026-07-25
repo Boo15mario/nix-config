@@ -17,10 +17,12 @@ Without an action option, the script presents an interactive menu.
 Options:
   -h, --help            Show this help text and exit.
   -H, --host PROFILE    Override the hostname used as the flake profile.
-  -a, --action ACTION   Select menu, flake, switch, or boot.
+  -a, --action ACTION   Select menu, flake, switch, boot, or bootloader.
       --flake-only      Update flake inputs without rebuilding.
       --switch          Update, rebuild, and activate the system now.
       --boot            Update and install the system for the next boot.
+      --install-bootloader
+                        Update and install the system and bootloader for next boot.
 
 Environment overrides:
   NIXOS_HOST=PROFILE    Override the detected hostname. --host takes priority.
@@ -37,6 +39,9 @@ Examples:
 
   ./${script_name} --host boo76-main --boot
       Update boo76-main and make it the default for the next boot.
+
+  ./${script_name} --host boo76-main --install-bootloader
+      Update boo76-main and force bootloader installation for the next boot.
 
   NIXOS_HOST=boo76-main ./${script_name} --action switch
       Override the detected profile through the environment.
@@ -55,13 +60,13 @@ set_action() {
   local new_action="$1"
 
   case "$new_action" in
-    menu|flake|switch|boot)
+    menu|flake|switch|boot|bootloader)
       ;;
     flake-only)
       new_action="flake"
       ;;
     *)
-      fail "Unknown action '${new_action}'. Use menu, flake, switch, or boot."
+      fail "Unknown action '${new_action}'. Use menu, flake, switch, boot, or bootloader."
       ;;
   esac
 
@@ -107,6 +112,10 @@ while (( $# > 0 )); do
       ;;
     --boot)
       set_action boot
+      shift
+      ;;
+    --install-bootloader)
+      set_action bootloader
       shift
       ;;
     --)
@@ -175,13 +184,20 @@ validate_host_profile() {
 
 rebuild_system() {
   local action="$1"
+  local install_bootloader="${2:-false}"
+  local -a bootloader_args=()
+
+  if [[ "$install_bootloader" == "true" ]]; then
+    bootloader_args+=(--install-bootloader)
+  fi
 
   validate_host_profile
   echo
-  echo "Running nixos-rebuild ${action} for ${host_name}..."
+  echo "Running nixos-rebuild ${action} ${bootloader_args[*]} for ${host_name}..."
   echo "Nix build logs will be streamed to this terminal."
   sudo nixos-rebuild \
     "$action" \
+    "${bootloader_args[@]}" \
     --print-build-logs \
     --flake "${flake_ref}#${host_name}"
 }
@@ -196,9 +212,10 @@ show_menu() {
   echo "1) Update flake inputs only"
   echo "2) Update flake inputs and switch the running system (live build logs)"
   echo "3) Update flake inputs and install the system for the next boot (live build logs)"
+  echo "4) Update flake inputs and force bootloader installation (live build logs)"
   echo "q) Quit"
   echo
-  read -r -p "Choose an option [1-3, q]: " choice
+  read -r -p "Choose an option [1-4, q]: " choice
 
   case "$choice" in
     1)
@@ -209,6 +226,9 @@ show_menu() {
       ;;
     3)
       requested_action="boot"
+      ;;
+    4)
+      requested_action="bootloader"
       ;;
     q|Q)
       echo "No changes made."
@@ -246,6 +266,13 @@ case "$requested_action" in
     rebuild_system boot
     echo
     echo "Update complete. Reboot to start the new configuration."
+    ;;
+  bootloader)
+    update_flake
+    rebuild_system boot true
+    echo
+    echo "Update complete. The bootloader and system are installed for the next boot."
+    echo "Verify the installation with: bootctl status"
     ;;
   *)
     fail "Internal error: unsupported action '${requested_action}'."
