@@ -21,6 +21,26 @@ nix flake update
 ```
 Then run the rebuild command for your system again.
 
+For an interactive menu that can update only the flake inputs, update and
+switch the running system, or update the system for the next boot, run:
+
+```bash
+./update-system.sh
+```
+
+The script uses the current hostname as the flake profile. Override it when
+needed with, for example:
+
+```bash
+NIXOS_HOST=boo76-main ./update-system.sh
+./update-system.sh --host boo76-main --switch
+./update-system.sh --host boo76 --boot
+```
+
+Run `./update-system.sh --help` to see every menu-bypass and profile-override
+option. Rebuild actions selected from either the menu or command-line options
+stream Nix build logs to the terminal.
+
 ### Building the access-OS ISO
 
 To build the custom access-OS ISO, run:

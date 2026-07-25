@@ -1,12 +1,14 @@
 { config, pkgs, ... }:
 
 {
-  services.xserver.videoDrivers = [ "modesetting" ];
+  # The NVIDIA PRIME module adds the AMD X driver using the bus ID below.
+  services.xserver.videoDrivers = [ "nvidia" ];
+  boot.initrd.kernelModules = [ "amdgpu" ];
+
   hardware.graphics = {
     enable = true;
     enable32Bit = true;
     extraPackages = with pkgs; [
-      intel-media-driver
       vulkan-loader
       vulkan-validation-layers
       vulkan-tools
@@ -15,25 +17,22 @@
       vulkan-loader
     ];
   };
-  # AMD GPU options (commented out)
-  # Intel optional packages (commented out)
-  # hardware.opengl.extraPackages = with pkgs; [
-  #   intel-media-driver
-  #   vaapiIntel
-  #   intel-compute-runtime
-  #   vulkan-loader
-  #   vulkan-validation-layers
-  #   vulkan-tools
-  # ];
-  # services.xserver.videoDrivers = [ "amdgpu" ];
-  # hardware.opengl.extraPackages = with pkgs; [
-  #   amdvlk
-  #   vulkan-loader
-  #   vulkan-validation-layers
-  #   vulkan-tools
-  # ];
-  # hardware.opengl.extraPackages32 = with pkgs.pkgsi686Linux; [
-  #   vulkan-loader
-  # ];
-  # Reminder: test later with `vulkaninfo` once on NixOS.
+
+  hardware.nvidia = {
+    modesetting.enable = true;
+    open = true;
+    nvidiaSettings = true;
+    package = config.boot.kernelPackages.nvidiaPackages.stable;
+
+    prime = {
+      # AMD is the primary display GPU; use `nvidia-offload <program>` when
+      # an application should render on the NVIDIA GPU.
+      offload = {
+        enable = true;
+        enableOffloadCmd = true;
+      };
+      nvidiaBusId = "PCI:1@0:0:0";
+      amdgpuBusId = "PCI:13@0:0:0";
+    };
+  };
 }
