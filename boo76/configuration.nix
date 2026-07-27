@@ -20,16 +20,17 @@
     ];
 
   # Bootloader.
-  boot.loader.systemd-boot.enable = false;
-  boot.loader.efi.canTouchEfiVariables = true;
-  boot.loader.grub = {
-    enable = true;
-    device = "nodev";
-    efiSupport = true;
-    useOSProber = true;
-    theme = "${pkgs.access-grub}";
+  boot.loader = {
+    systemd-boot = {
+      enable = true;
+      configurationLimit = 4;
+      editor = false;
+      memtest86.enable = true;
+    };
+    efi.canTouchEfiVariables = true;
+    timeout = 2;
   };
-  boot.loader.timeout = 2;
+
   boot.plymouth = {
     enable = true;
     theme = "nixos-bgrt";

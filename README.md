@@ -21,6 +21,28 @@ nix flake update
 ```
 Then run the rebuild command for your system again.
 
+For an interactive menu that can update only the flake inputs, update and
+switch the running system, update the system for the next boot, or force a
+bootloader installation during a migration, run:
+
+```bash
+./update-system.sh
+```
+
+The script uses the current hostname as the flake profile. Override it when
+needed with, for example:
+
+```bash
+NIXOS_HOST=boo76-main ./update-system.sh
+./update-system.sh --host boo76-main --switch
+./update-system.sh --host boo76 --boot
+./update-system.sh --host boo76-main --install-bootloader
+```
+
+Run `./update-system.sh --help` to see every menu-bypass and profile-override
+option. Rebuild actions selected from either the menu or command-line options
+stream Nix build logs to the terminal.
+
 ### Building the access-OS ISO
 
 To build the custom access-OS ISO, run:
@@ -46,8 +68,8 @@ sudo ./install-nixos.sh
 The script **erases** the selected system disk, creates a GPT EFI partition and
 an XFS root partition, and can optionally erase a second disk for an XFS
 `/home`. It also offers an optional swapfile, generates hardware configuration
-for the installed machine, and installs the selected flake host (default:
-`boo76-main`). `boo76-main` uses the `boo76` hardware profile by default.
+in the selected host's own directory, and installs that flake host (default:
+`boo76-main`).
 
 ### Manual installation
 
@@ -77,7 +99,7 @@ To install NixOS using this repository from a live environment:
    ```bash
    # Replace 'hp-boo' with your hostname
    sudo NIX_CONFIG='extra-experimental-features = nix-command flakes' \
-     nixos-install --flake /mnt/etc/nixos#hp-boo
+     nixos-install --flake path:/mnt/etc/nixos#hp-boo
    ```
 
 ## Directory Structure
